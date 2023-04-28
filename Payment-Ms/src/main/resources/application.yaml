@@ -1,0 +1,46 @@
+
+server:
+  port: 8083
+  error:
+    include-message: always
+
+spring:
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/payment
+    password: GEpida820
+
+  jpa:
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      jdbc:
+      lob:
+      non_contextual_creation: 'true'
+      format_sql: 'true'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: create
+
+  application:
+    name: PAYMENT-MS
+
+  config:
+    import: configserver:http://${CONFIG_SERVER_URL:localhost}:8762
+
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: https://dev-60089887.okta.com/oauth2/default
+#      client:
+#        registration:
+#          internal-client:
+#            provider: okta
+#            authorizationGrantType: client_credentials
+#            scope: internal
+#            clientId: 0oa8ynltnyGfi5ZcY5d7
+#            clientSecret: M-Tvo0G7FIeDiQ6UMhc6JGmXJDNw6JDTZfjMQcNq
+#        provider:
+#          okta:
+#            issuerUri: https://dev-60089887.okta.com/oauth2/default

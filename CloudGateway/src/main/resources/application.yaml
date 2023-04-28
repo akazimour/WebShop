@@ -1,0 +1,76 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  config:
+    import: configserver:http://${CONFIG_SERVER_URL:localhost}:8762
+
+  cloud:
+    gateway:
+      routes:
+        - id : ORDER-MS
+          uri: lb://ORDER-MS
+          predicates:
+            - Path=/order/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: ORDER-MS
+                fallbackUri: forward:/orderServiceFallBack
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                replenishRate: 5
+                burstCapacity: 5
+
+        - id: PRODUCT-MS
+          uri: lb://PRODUCT-MS
+          predicates:
+            - Path=/product/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: PRODUCT-MS
+                fallbackUri: forward:/productServiceFallBack
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                replenishRate: 5
+                burstCapacity: 5
+
+        - id: PAYMENT-MS
+          uri: lb://PAYMENT-MS
+          predicates:
+            - Path=/payment/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: PAYMENT-MS
+                fallbackUri: forward:/paymentServiceFallBack
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter:
+                replenishRate: 5
+                burstCapacity: 5
+
+okta:
+  oauth2:
+#    issuer: https://dev-60089887.okta.com/oauth2/default
+#    audience: api://default
+    client-id: 0oa8ynltnyGfi5ZcY5d7
+    client-secret: M-Tvo0G7FIeDiQ6UMhc6JGmXJDNw6JDTZfjMQcNq
+    scopes: openid, email, profile, offline_access, internal, Admin, Customer
+
+
+
+
+
+
+
+
+
+
+
