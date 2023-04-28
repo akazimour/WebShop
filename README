@@ -3,5 +3,5 @@ inserting orders related to these products with payment details.
 
 Tchnologie and solution stack: 
 
-Spring Cloud, Eureka server, Config server, Cloud gateway, OpenFeign, Zippkin, RestTemplate, Redis, Oauth2, Okta
+Spring Cloud, Eureka server, Config server, Cloud gateway, OpenFeign, Zippkin, RestTemplate, Redis, Oauth2, Okta, Docker
 microservices like: Product service, Payment service, Order service
