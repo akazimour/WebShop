@@ -1,7 +1,7 @@
-This is a microservice based WebShop application which is able to register products, and capable of 
+This is a microservice based Webshop application which is able to register products, and capable of 
 inserting orders related to these products with payment details.
 
-Tchnologie and solution stack: 
+Technologies and solution stack: 
 
-Spring Cloud, Eureka server, Config server, Cloud gateway, OpenFeign, Zippkin, RestTemplate, Redis, Oauth2, Okta, Docker
+Spring Cloud, Eureka server, Config server, Cloud gateway, Open Feign, Zippkin, Rest Template, Redis, Oauth2, Okta, Docker
 microservices like: Product service, Payment service, Order service
